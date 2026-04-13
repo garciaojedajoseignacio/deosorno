@@ -1,0 +1,788 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>info.deosorno.cl | Páginas web simples para tu negocio</title>
+  <meta name="description" content="Creamos páginas estáticas, landing pages, blogs básicos y sitios WordPress para empresas, emprendimientos y marca personal.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#f6f5f1;
+      --surface:#fcfbf8;
+      --surface-2:#ece8df;
+      --text:#23211d;
+      --muted:#6d6a64;
+      --line:rgba(35,33,29,.10);
+      --primary:#0f6a68;
+      --primary-dark:#0a4f4e;
+      --accent:#c9a96b;
+      --white:#ffffff;
+      --shadow:0 22px 56px rgba(34,29,24,.10);
+      --radius-xl:34px;
+      --radius-lg:26px;
+      --radius-md:18px;
+      --radius-full:999px;
+      --max:1180px;
+      --transition:180ms cubic-bezier(.16,1,.3,1);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:'Manrope',sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,.95), transparent 22%),
+        radial-gradient(circle at right 10%, rgba(15,106,104,.08), transparent 18%),
+        linear-gradient(180deg, #f8f7f3 0%, #f3f0e9 100%);
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
+
+    a{text-decoration:none;color:inherit}
+    img{display:block;max-width:100%;height:auto}
+
+    .container{
+      width:min(var(--max), calc(100% - 32px));
+      margin:0 auto;
+    }
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:40;
+      background:rgba(246,245,241,.84);
+      backdrop-filter:blur(14px);
+      border-bottom:1px solid var(--line);
+    }
+
+    .nav{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+      padding:14px 0;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
+    .brand-mark{
+      width:46px;
+      height:46px;
+      border-radius:14px;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(135deg, var(--primary), #3f8e8b);
+      color:#fff;
+      box-shadow:var(--shadow);
+      font-weight:800;
+      font-size:1rem;
+    }
+
+    .brand-text strong{
+      display:block;
+      font-size:1rem;
+      letter-spacing:-.2px;
+    }
+
+    .brand-text span{
+      display:block;
+      margin-top:4px;
+      font-size:.88rem;
+      color:var(--muted);
+      font-weight:700;
+    }
+
+    .nav-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+
+    .nav-links a{
+      padding:10px 14px;
+      border-radius:var(--radius-full);
+      color:var(--muted);
+      font-weight:700;
+      transition:all var(--transition);
+    }
+
+    .nav-links a:hover{
+      background:rgba(255,255,255,.75);
+      color:var(--text);
+    }
+
+    .hero{
+      padding:54px 0 36px;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      gap:22px;
+      align-items:stretch;
+    }
+
+    .hero-copy{
+      background:linear-gradient(180deg, rgba(255,255,255,.84), rgba(255,255,255,.64));
+      border:1px solid rgba(255,255,255,.88);
+      border-radius:var(--radius-xl);
+      padding:34px;
+      box-shadow:var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero-copy::before{
+      content:"";
+      position:absolute;
+      width:280px;
+      height:280px;
+      border-radius:50%;
+      top:-100px;
+      right:-80px;
+      background:radial-gradient(circle, rgba(201,169,107,.16), rgba(201,169,107,0));
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      width:max-content;
+      align-items:center;
+      gap:8px;
+      padding:10px 14px;
+      border-radius:var(--radius-full);
+      background:rgba(15,106,104,.08);
+      color:var(--primary-dark);
+      font-weight:800;
+      margin-bottom:18px;
+    }
+
+    h1,h2,h3{
+      margin:0 0 14px;
+      line-height:.95;
+      letter-spacing:-1px;
+    }
+
+    h1,h2{
+      font-family:'Instrument Serif',serif;
+      font-weight:400;
+    }
+
+    h1{
+      font-size:clamp(3rem, 6vw, 6rem);
+    }
+
+    h2{
+      font-size:clamp(2rem, 3vw, 3.5rem);
+    }
+
+    h3{
+      font-size:1.18rem;
+      line-height:1.1;
+      letter-spacing:-.2px;
+    }
+
+    .lead{
+      max-width:60ch;
+      margin:0 0 24px;
+      color:var(--muted);
+      line-height:1.9;
+      font-size:1.04rem;
+    }
+
+    .cta-row{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-bottom:18px;
+    }
+
+    .btn{
+      min-height:50px;
+      padding:14px 20px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:var(--radius-full);
+      font-weight:800;
+      transition:all var(--transition);
+      border:1px solid transparent;
+    }
+
+    .btn-primary{
+      background:var(--primary);
+      color:#fff;
+      box-shadow:var(--shadow);
+    }
+
+    .btn-primary:hover{
+      background:var(--primary-dark);
+      transform:translateY(-1px);
+    }
+
+    .btn-soft{
+      background:rgba(255,255,255,.76);
+      border-color:var(--line);
+      color:var(--text);
+    }
+
+    .btn-soft:hover{
+      background:#fff;
+    }
+
+    .hero-points{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:10px;
+      margin-top:10px;
+    }
+
+    .hero-point{
+      padding:14px;
+      border-radius:var(--radius-md);
+      background:rgba(255,255,255,.68);
+      border:1px solid var(--line);
+    }
+
+    .hero-point strong{
+      display:block;
+      margin-bottom:5px;
+      font-size:.96rem;
+    }
+
+    .hero-point span{
+      color:var(--muted);
+      line-height:1.6;
+      font-size:.92rem;
+    }
+
+    .hero-side{
+      min-height:580px;
+      border-radius:var(--radius-xl);
+      overflow:hidden;
+      position:relative;
+      box-shadow:var(--shadow);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.05), rgba(35,33,29,.56)),
+        url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
+      display:flex;
+      align-items:flex-end;
+      padding:24px;
+    }
+
+    .floating-note{
+      width:min(360px, 100%);
+      background:rgba(255,255,255,.94);
+      border-radius:24px;
+      padding:20px;
+      box-shadow:var(--shadow);
+    }
+
+    .floating-note small{
+      display:block;
+      margin-bottom:8px;
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      font-size:.76rem;
+      font-weight:800;
+    }
+
+    .floating-note strong{
+      display:block;
+      margin-bottom:8px;
+      font-size:1.32rem;
+      line-height:1.08;
+    }
+
+    .floating-note p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.75;
+    }
+
+    section{
+      padding:34px 0 78px;
+    }
+
+    .section-copy{
+      margin:0 0 24px;
+      max-width:70ch;
+      color:var(--muted);
+      line-height:1.9;
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:16px;
+    }
+
+    .card{
+      padding:24px;
+      border-radius:var(--radius-lg);
+      background:rgba(255,255,255,.78);
+      border:1px solid rgba(255,255,255,.86);
+      box-shadow:var(--shadow);
+    }
+
+    .icon-box{
+      width:54px;
+      height:54px;
+      border-radius:18px;
+      display:grid;
+      place-items:center;
+      margin-bottom:14px;
+      background:linear-gradient(135deg, rgba(15,106,104,.12), rgba(201,169,107,.14));
+      font-size:24px;
+    }
+
+    .card p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.8;
+    }
+
+    .pricing-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:16px;
+    }
+
+    .price-card{
+      padding:26px;
+      border-radius:30px;
+      background:rgba(255,255,255,.82);
+      border:1px solid rgba(255,255,255,.88);
+      box-shadow:var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .price-card.featured{
+      background:linear-gradient(180deg, rgba(15,106,104,.96), rgba(10,79,78,.96));
+      color:#fff;
+    }
+
+    .price-card.featured p,
+    .price-card.featured li,
+    .price-card.featured .muted-light{
+      color:rgba(255,255,255,.82);
+    }
+
+    .badge{
+      display:inline-flex;
+      padding:8px 12px;
+      border-radius:var(--radius-full);
+      background:rgba(15,106,104,.08);
+      color:var(--primary-dark);
+      font-weight:800;
+      font-size:.84rem;
+      margin-bottom:14px;
+    }
+
+    .price-card.featured .badge{
+      background:rgba(255,255,255,.14);
+      color:#fff;
+    }
+
+    .price{
+      font-size:2.4rem;
+      font-weight:800;
+      letter-spacing:-1px;
+      margin:8px 0 14px;
+    }
+
+    .price small{
+      font-size:.95rem;
+      font-weight:700;
+      letter-spacing:0;
+    }
+
+    .features{
+      display:grid;
+      gap:10px;
+      margin:18px 0 22px;
+      padding:0;
+      list-style:none;
+    }
+
+    .features li{
+      color:var(--muted);
+      line-height:1.7;
+    }
+
+    .steps{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:16px;
+    }
+
+    .step-card{
+      padding:24px;
+      border-radius:28px;
+      background:rgba(255,255,255,.78);
+      border:1px solid rgba(255,255,255,.86);
+      box-shadow:var(--shadow);
+    }
+
+    .step-number{
+      width:42px;
+      height:42px;
+      border-radius:14px;
+      display:grid;
+      place-items:center;
+      background:var(--primary);
+      color:#fff;
+      font-weight:800;
+      margin-bottom:14px;
+    }
+
+    .step-card p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.8;
+    }
+
+    .contact-layout{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+    }
+
+    .contact-card{
+      padding:26px;
+      border-radius:30px;
+      background:rgba(255,255,255,.80);
+      border:1px solid rgba(255,255,255,.86);
+      box-shadow:var(--shadow);
+    }
+
+    .info-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:12px;
+      margin-top:18px;
+    }
+
+    .info-box{
+      padding:16px;
+      border-radius:18px;
+      background:rgba(255,255,255,.70);
+      border:1px solid var(--line);
+      line-height:1.7;
+    }
+
+    .info-box strong{
+      display:block;
+      margin-bottom:4px;
+    }
+
+    .closing{
+      text-align:center;
+      padding:38px 24px;
+      border-radius:var(--radius-xl);
+      background:linear-gradient(180deg, rgba(255,255,255,.88), rgba(247,243,236,.84));
+      border:1px solid rgba(255,255,255,.88);
+      box-shadow:var(--shadow);
+    }
+
+    .closing p{
+      max-width:64ch;
+      margin:12px auto 22px;
+      color:var(--muted);
+      line-height:1.9;
+    }
+
+    footer{
+      padding:20px 0 48px;
+      text-align:center;
+      color:var(--muted);
+      font-size:.95rem;
+    }
+
+    @media (max-width: 980px){
+      .hero-grid,
+      .cards,
+      .pricing-grid,
+      .steps,
+      .contact-layout,
+      .info-grid{
+        grid-template-columns:1fr;
+      }
+
+      .nav{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+      .hero-points{
+        grid-template-columns:1fr;
+      }
+
+      .hero-side{
+        min-height:360px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="#inicio" class="brand" aria-label="Inicio info.deosorno.cl">
+        <div class="brand-mark">io</div>
+        <div class="brand-text">
+          <strong>info.deosorno.cl</strong>
+          <span>Páginas web simples para vender mejor</span>
+        </div>
+      </a>
+
+      <nav class="nav-links" aria-label="Navegación principal">
+        <a href="#servicios">Servicios</a>
+        <a href="#precios">Precios</a>
+        <a href="#proceso">Cómo trabajamos</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div>
+            <div class="eyebrow">Web simple, rápida y al alcance de todos</div>
+            <h1>Tu negocio, servicio o imagen personal en internet sin complicarte.</h1>
+            <p class="lead">
+              En info.deosorno.cl creamos páginas estáticas, landing pages, blogs básicos y sitios WordPress para mostrar tu empresa, emprendimiento o marca personal de forma clara, profesional y accesible. La idea es simple: que tengas presencia web rápida, útil y con precios fáciles de entender [web:258][web:281].
+            </p>
+
+            <div class="cta-row">
+              <a class="btn btn-primary" href="#contacto">Solicitar mi página</a>
+              <a class="btn btn-soft" href="#precios">Ver precios</a>
+            </div>
+          </div>
+
+          <div class="hero-points">
+            <div class="hero-point">
+              <strong>Ideal para ofrecer servicios</strong>
+              <span>Perfecto para mostrar lo que haces, cómo trabajas y cómo contactarte [web:258].</span>
+            </div>
+            <div class="hero-point">
+              <strong>Planes simples</strong>
+              <span>Cuando los precios son claros, el cliente entiende rápido qué opción le conviene [web:281].</span>
+            </div>
+            <div class="hero-point">
+              <strong>Presencia profesional</strong>
+              <span>Una web clara ayuda a que tu negocio genere más confianza [web:260][web:258].</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-side">
+          <div class="floating-note">
+            <small>Lo que hacemos</small>
+            <strong>Webs simples para negocios reales</strong>
+            <p>
+              Creamos sitios pensados para personas que necesitan mostrar sus servicios, recibir consultas y verse más profesionales online sin entrar en proyectos complejos [web:258][web:260].
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="servicios">
+      <div class="container">
+        <h2>Servicios</h2>
+        <p class="section-copy">
+          Estas soluciones están pensadas para pequeños negocios, emprendimientos, técnicos, profesionales independientes y personas que quieren una web clara para presentarse mejor en internet. La mejor estructura para este tipo de servicio suele ser directa: qué haces, cuánto cuesta y cómo contactarte [web:258][web:281].
+        </p>
+
+        <div class="cards">
+          <article class="card">
+            <div class="icon-box">📄</div>
+            <h3>Landing page o página estática</h3>
+            <p>Una página simple y directa para presentar tu negocio, servicio, promoción, emprendimiento o imagen personal.</p>
+          </article>
+
+          <article class="card">
+            <div class="icon-box">📝</div>
+            <h3>Blog básico</h3>
+            <p>Un sitio simple para publicar contenido, noticias, artículos o información recurrente de manera ordenada.</p>
+          </article>
+
+          <article class="card">
+            <div class="icon-box">⚙️</div>
+            <h3>WordPress</h3>
+            <p>Una opción más flexible para quienes necesitan administrar contenido con mayor libertad y crecimiento futuro.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="precios">
+      <div class="container">
+        <h2>Precios</h2>
+        <p class="section-copy">
+          Los planes están definidos de forma simple para que cualquier persona pueda elegir rápido según lo que necesita. La transparencia de precios y alcance ayuda a generar más confianza y menos fricción al momento de pedir un servicio [web:260][web:281].
+        </p>
+
+        <div class="pricing-grid">
+          <article class="price-card">
+            <div class="badge">Opción inicial</div>
+            <h3>Landing page</h3>
+            <p>Ideal para ofrecer un servicio, promocionar un emprendimiento o mostrar tu perfil profesional.</p>
+            <div class="price">$5.000 <small>CLP</small></div>
+            <ul class="features">
+              <li>Una página simple y clara.</li>
+              <li>Información de servicios o presentación personal.</li>
+              <li>Botón de contacto directo.</li>
+              <li>Diseño responsive básico.</li>
+            </ul>
+            <a class="btn btn-soft" href="#contacto">Quiero esta opción</a>
+          </article>
+
+          <article class="price-card featured">
+            <div class="badge">Más conveniente</div>
+            <h3>Blog básico</h3>
+            <p class="muted-light">Pensado para quienes quieren una web simple con estructura de publicaciones o contenido continuo.</p>
+            <div class="price">$10.000 <small>CLP</small></div>
+            <ul class="features">
+              <li>Inicio + estructura básica de blog.</li>
+              <li>Diseño simple y ordenado.</li>
+              <li>Ideal para contenido o noticias.</li>
+              <li>Presencia más completa que una landing.</li>
+            </ul>
+            <a class="btn btn-soft" href="#contacto" style="background:#fff;color:var(--text);border-color:transparent;">Solicitar blog</a>
+          </article>
+
+          <article class="price-card">
+            <div class="badge">Más flexible</div>
+            <h3>WordPress</h3>
+            <p>Para quienes necesitan un sitio administrable, con más libertad de crecimiento y edición.</p>
+            <div class="price">$20.000 <small>CLP / año</small></div>
+            <ul class="features">
+              <li>Sitio montado en WordPress.</li>
+              <li>Ideal para negocios o proyectos en crecimiento.</li>
+              <li>Mayor facilidad para editar contenido.</li>
+              <li>Base más completa para ampliar después.</li>
+            </ul>
+            <a class="btn btn-soft" href="#contacto">Solicitar WordPress</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="proceso">
+      <div class="container">
+        <h2>Cómo trabajamos</h2>
+        <p class="section-copy">
+          El proceso es simple y directo para que puedas tener tu página sin perder tiempo. En servicios digitales, mientras más claro sea el proceso, más fácil resulta para el cliente tomar una decisión [web:258][web:260].
+        </p>
+
+        <div class="steps">
+          <article class="step-card">
+            <div class="step-number">1</div>
+            <h3>Cuéntanos qué necesitas</h3>
+            <p>Nos indicas si quieres una landing, un blog básico o un sitio WordPress, y qué tipo de negocio o servicio deseas mostrar.</p>
+          </article>
+
+          <article class="step-card">
+            <div class="step-number">2</div>
+            <h3>Preparamos tu página</h3>
+            <p>Organizamos el contenido, el diseño y la estructura básica para que tu web se vea clara, moderna y útil.</p>
+          </article>
+
+          <article class="step-card">
+            <div class="step-number">3</div>
+            <h3>Publicamos y te entregamos</h3>
+            <p>Dejamos tu sitio listo para mostrar tu empresa, emprendimiento o imagen profesional de forma ordenada y confiable.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto">
+      <div class="container">
+        <h2>Contacto</h2>
+        <p class="section-copy">
+          Si quieres una página para ofrecer tus servicios, mostrar tu negocio o tener presencia personal en internet, puedes escribir directamente. En este tipo de sitios, el contacto visible y rápido es uno de los factores más importantes para convertir visitas en clientes [web:260][web:258].
+        </p>
+
+        <div class="contact-layout">
+          <article class="contact-card">
+            <h3 style="margin-top:0;">Datos de contacto</h3>
+            <div class="info-grid">
+              <div class="info-box">
+                <strong>Nombre</strong>
+                Jose Ignacio Garcia Ojeda
+              </div>
+              <div class="info-box">
+                <strong>Ciudad</strong>
+                Osorno, Chile [cite:307]
+              </div>
+              <div class="info-box">
+                <strong>WhatsApp</strong>
+                +56 9 XXXX XXXX
+              </div>
+              <div class="info-box">
+                <strong>Correo</strong>
+                contacto@deosorno.cl
+              </div>
+            </div>
+
+            <div class="cta-row" style="margin-top:18px;">
+              <a class="btn btn-primary" href="https://wa.me/56900000000" target="_blank" rel="noopener noreferrer">Hablar por WhatsApp</a>
+              <a class="btn btn-soft" href="mailto:contacto@deosorno.cl">Enviar correo</a>
+            </div>
+          </article>
+
+          <article class="contact-card">
+            <h3 style="margin-top:0;">¿Para quién es esto?</h3>
+            <div class="cards" style="grid-template-columns:1fr; gap:12px;">
+              <article class="card" style="padding:18px; border-radius:20px; box-shadow:none;">
+                <h3>Empresas y negocios</h3>
+                <p>Para mostrar servicios, horarios, promociones, contacto y generar una mejor presencia online.</p>
+              </article>
+              <article class="card" style="padding:18px; border-radius:20px; box-shadow:none;">
+                <h3>Emprendimientos</h3>
+                <p>Para tener una página simple que ayude a verse más profesional y vender mejor.</p>
+              </article>
+              <article class="card" style="padding:18px; border-radius:20px; box-shadow:none;">
+                <h3>Imagen personal</h3>
+                <p>Para técnicos, profesionales, independientes o personas que quieran presentar su trabajo de forma clara.</p>
+              </article>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="closing">
+          <h2>Una página web simple puede ser suficiente para empezar a vender mejor.</h2>
+          <p>
+            Si tu idea es mostrar tu empresa, emprendimiento o perfil profesional en internet, una landing o sitio básico puede darte una presencia clara, directa y confiable sin necesidad de un proyecto grande desde el comienzo [web:258][web:281].
+          </p>
+          <a class="btn btn-primary" href="#contacto">Pedir información</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      info.deosorno.cl · Soluciones web simples para negocios, emprendimientos e imagen personal
+    </div>
+  </footer>
+</body>
+</html>
